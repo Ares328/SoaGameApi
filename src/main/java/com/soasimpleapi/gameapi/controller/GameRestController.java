@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin (origins = "*")
 @RestController
 @RequestMapping("/api/game")
 public class GameRestController {
@@ -27,7 +28,7 @@ public class GameRestController {
     }
 
     @PostMapping("/add")
-    public Iterable<Game> addGame(@Valid @RequestBody Game game){
+    public Iterable<Game> addGame(@Valid Game game){
         try {
             gameService.addGame(game);
         }catch(ServiceException exc) {
@@ -47,7 +48,7 @@ public class GameRestController {
     }
 
     @PutMapping("/update/{id}")
-    public void updateGame(@PathVariable("id") long id,@Valid @RequestBody Game game) {
+    public void updateGame(@PathVariable("id") long id,@Valid Game game) {
         gameService.updateGame(gameService.getGameByid(id),game);
     }
 
